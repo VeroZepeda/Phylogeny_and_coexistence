@@ -5,7 +5,7 @@
 #martorell@ciencias.unam.mx
 
 #Load the data
-todo=read.csv("~todo.csv")
+todo=read.csv("~coexistence_mechanisms.csv")
 
 #Quantiles for a 95% confidence interval
 sub=function(vec) quantile(vec,0.025)
