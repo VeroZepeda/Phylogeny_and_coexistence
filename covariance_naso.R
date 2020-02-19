@@ -5,7 +5,7 @@
 #martorell@ciencias.unam.mx
 
 #Load the data
-dat=read.csv("~datos.csv")
+dat=read.csv("~population_parameters.csv")
 
 #This code needs:
 #An object "lambas" which is a matrix of lambdas with the years in the columns and the species in the rows.
@@ -23,7 +23,7 @@ parm=as.numeric(dat[,36])
 
 
 #Matrix with phylogenetic distance by species pairs
-matdist=read.csv("~matdistphylogeniaactualizada.csv")
+matdist=read.csv("~phylogenetic_distances.csv")
 
 
 #Load the function for invasibility analysis
