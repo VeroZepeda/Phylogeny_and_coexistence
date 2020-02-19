@@ -9,8 +9,8 @@ library(lme4)
 
 #This code needs a data frame with the strengh of long-term low density growth rates (riobs), storage effect (DI), relative non-linearity (DN), fluctuation-independent niche differentiation (FIND), environment-competition covariance as invader (covi) and mean phylogenetic distance (mpd) in the columns. The the identity of the focal species (focales) and the number of associated species (naso) in the rows.
 
-####dat=read.csv("~/Desktop/para_Cap2/datosBIEN/dat.csv")
-#####datcova=read.csv("~/Desktop/para_Cap2/datosBIEN/covarianzaRes/covsresdat.csv")
+####dat=read.csv("~coexistence_mechanims.csv")
+#####datcova=read.csv("~covariances.csv")
 
 
 #######################GLMM for the strength of long-term low density growth rates################
