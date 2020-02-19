@@ -21,7 +21,7 @@ paro=as.numeric(dat[,35])
 parm=as.numeric(dat[,36])
 
 
-###Para cargar la matriz de distancias filogeneticas
+#Matrix with phylogenetid distances by species pairs
 matdist=read.csv("~matdistphylogeniaactualizada.csv")
 
 
