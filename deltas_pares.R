@@ -5,7 +5,7 @@
 
 #Load the data
 
-dat=read.csv("~datos.csv")
+dat=read.csv("~population_parameters.csv")
 
 #This code needs:
 #An object "lambas" which is a matrix of lambdas with the years in the columns and the species in the rows.
