@@ -38,47 +38,50 @@ source("~Invasiblity_functions.R")
 #iter2= total number of iterations
 
 paradeltas<- function (S1,naso,veces,iter1,iter2){
-   salida=matrix(NA,nrow=veces,ncol=5)
-   colnames(salida)=c("mpd","DI","DCp","DN","riobs")
+   salida=matrix(NA,nrow=veces,ncol=6)
+   colnames(salida)=c("mpd","mpdvar","DI","DCp","DN","riobs")
    for(i in 1:veces){
    	
    		##select the associated species
    		universo=1:19
    		universo=universo[-S1]
    		Saso<- sample(universo,naso, rep = FALSE)
-
+   		
    		##select the parameters for the demographic models 
    		lamm=lambdas[c(S1,Saso),]
    		alfm=alfas[c(S1,Saso),c(S1,Saso)]
    		param=para[c(S1,Saso)]
    		parbm=parb[c(S1,Saso)]
-   		riq=dim(alfm)[1]
+   		riq=dim(lamm)[1]
    		parbp=rep(0,riq)
-   		parap=param+parbm*mean(log(lamm))
+   		parap=param+parbm*rowMeans(log(lamm))
    		lamprom=exp(rowMeans(log(lamm)))
-   		lamprom=matrix(rep(lamprom,riq),nrow=riq)
+   		lamprom=matrix(rep(lamprom,12),nrow=riq)
    		
    
    		#estimate the mean phylogenetic distance
    		matdistm=matdist[c(S1,Saso),c(S1,Saso)]
    		salida[i,1]=mean(matdistm[-1,1])
+   		salida[i,2]=var(matdistm[-1,1])
    		
    		#estimate the components of ri with the original model
-   		comp=invadiv(lamm,alfm,param,parbm,iter1=iter1,iter2=iter2)
-   			sinb=invadiv2(lamm,alfm,param,parbm,parap,parbp,iter1=iter1,iter2=iter2)
-   		sinvar=invadiv(lamprom,alfm,param,parbm,iter1=iter1,iter2=iter2)
-   		DI=rowMeans(comp)-rowMeans(sinb)
-   		DN=rowMeans(sinvar)-rowMeans(sinb)
-   		DCp=rowMeans(comp)-DI-DN
-   		riobs=rowMeans(comp)
+	    nn=rep(0.01,riq)
+		nn[1]=0
+		comp=calcr0(lamm,alfm,param,parbm,nn,1,iter=iter1+iter2)
+		sinvar=calcr0(lamprom,alfm,param,parbm,nn,1,iter=iter1+iter2)####
+		sinb=invadiv2(lamm,alfm,param,parbm,parap,parbp,1,iter1=iter1,iter2=iter2)
+	    
+   		DI=mean(comp)-mean(sinb)
+   		DN=mean(sinvar)-mean(sinb)
+   		DCp=mean(comp)-DI-DN
+   		riobs=mean(comp)
    		
    		#Save components of ri in matrix salida
-   		salida[i,2]=DI[1]
-   		salida[i,3]=DCp[1]
-   		salida[i,4]=DN[1]
-   		salida[i,5]=riobs[1]
-     
-   }
+   		salida[i,3]=DI
+   		salida[i,4]=DCp
+   		salida[i,5]=DN
+   		salida[i,6]=riobs
+        }
    salida
    }
    
