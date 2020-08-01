@@ -66,7 +66,7 @@ invadiv2=function(lambdas,alfas,para,parb,para2,parb2,i,iter1,iter2){
 		sim=simorig(lambdas,alfas,parau,parbu,iter=iter2,n0=nn)
 		nn=sim[,iter2]+0.001
 		nn[i]=0
-		sal[i]=calcr0(lambdas,alfas,parau,parbu,nn,i,iter=iter1)
+		sal=calcr0(lambdas,alfas,parau,parbu,nn,i,iter=iter1)
 	#}
 	sal
 }
