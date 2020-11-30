@@ -28,5 +28,5 @@ boot=function(dat,iter){
 }
 
 
-#Line to run the code
+#Line to run the code (example)
 find_boot=boot(todo,100)
