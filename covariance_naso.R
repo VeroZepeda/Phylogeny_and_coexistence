@@ -78,6 +78,6 @@ paradeltas<- function (S1,naso,veces,iter1,iter2){
    salida
    }
      
- #Line to runn the code for n associated species and 200 000 times    
+ #Line to runn the code for n associated species and 250 000 times    
    
-aa=paradeltas(1,6,1500,200000,10000)
+aa=paradeltas(1,6,1500,250000,10000)
