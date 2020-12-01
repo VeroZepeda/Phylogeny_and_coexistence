@@ -111,7 +111,7 @@ for(i in 1:19) {
    salida
    }
 
-   
+#Line to run the function   
 aa=paradeltas(1,9,10000,250000,10000)
 	
 	
